@@ -17,7 +17,7 @@ export const Register = () => {
                 </label>
                 <button>Sign Up</button>
             </form>
-            <p>You do have account ? Login</p>
+            <p>You do have an account ? Login</p>
         </div>
     </div>
   )
