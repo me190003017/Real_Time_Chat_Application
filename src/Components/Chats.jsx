@@ -1,29 +1,42 @@
 import React from 'react'
+import { useContext,useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { doc, onSnapshot } from "firebase/firestore";
+import { useEffect } from 'react';
+import { db } from "../firebase";
+import { ChatContext } from '../context/ChatContext';
 
 export const Chats = () => {
+    const [chats, setChats] = useState([]);
+    const { currentUser } = useContext(AuthContext);
+    const {dispatch} =useContext(ChatContext)
+  
+    useEffect(() => {
+      const getChats = () => {
+        const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+          setChats(doc.data());
+        });
+        return () => {
+          unsub();
+        };
+      };
+      currentUser.uid && getChats();
+    }, [currentUser.uid]);
+    // console.log(Object.entries(chats));
+    const handleSelect = (u) => {
+        dispatch({ type: "CHANGE_USER", payload: u });
+      };
   return (
     <div className="chats">
-        <div className="userChat">
-                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-                <div className="userChatInfo">
-                    <span>John</span>
-                    <p>Hello john</p>
+        {Object.entries(chats).sort((b,a)=>a[1].date-b[1].date)?.map((chat)=>(
+                <div className="userChat" key={chat[0]}   onClick={() => handleSelect(chat[1].userInfo)}>
+                    <img src={chat[1].userInfo.photoURL} alt="" />
+                    <div className="userChatInfo">
+                        <span>{chat[1].userInfo.displayName}</span>
+                        <p>{chat[1].lastMessage?.text}</p>
+                    </div>
                 </div>
-            </div>
-            <div className="userChat">
-                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-                <div className="userChatInfo">
-                    <span>John</span>
-                    <p>Hello john</p>
-                </div>
-            </div>
-            <div className="userChat">
-                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-                <div className="userChatInfo">
-                    <span>John</span>
-                    <p>Hello john</p>
-                </div>
-            </div>
+        ))}
     </div>
   )
 }
