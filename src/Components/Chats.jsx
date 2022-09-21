@@ -22,7 +22,7 @@ export const Chats = () => {
       };
       currentUser.uid && getChats();
     }, [currentUser.uid]);
-    // console.log(Object.entries(chats));
+    console.log(Object.entries(chats));
     const handleSelect = (u) => {
         dispatch({ type: "CHANGE_USER", payload: u });
       };
@@ -37,6 +37,13 @@ export const Chats = () => {
                     </div>
                 </div>
         ))}
+        {/* <div className="userChat"  >
+                    <img src="https://images.pexels.com/photos/5778362/pexels-photo-5778362.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
+                    <div className="userChatInfo">
+                        <span>Krishna</span>
+                        <p>hello</p>
+                    </div>
+                </div> */}
     </div>
   )
 }

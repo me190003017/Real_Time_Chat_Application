@@ -20,7 +20,7 @@ export const Input = () => {
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
-  // console.log(text);
+
   const handleSend = async () => {
     if (img) {
       const storageRef = ref(storage, uuid());
@@ -81,9 +81,9 @@ export const Input = () => {
       <input
         type="text"
         placeholder="Type something..."
-        onChange={(e) => setText(e.target.value)}
-        value={text} 
         onKeyDown={handleKey}
+        onChange={(e) => setText(e.target.value)}
+        value={text}
       />
       <div className="send">
         <img src={Attach} alt="" />
@@ -100,6 +100,5 @@ export const Input = () => {
       </div>
     </div>
   );
-
 }
 
