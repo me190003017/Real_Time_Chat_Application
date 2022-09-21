@@ -6,7 +6,6 @@ import { Messages } from './Messages';
 import { Input } from "./Input";
 import { useContext } from 'react';
 import { ChatContext } from '../context/ChatContext';
-
 export const Chat = () => {
   const { data } = useContext(ChatContext);
 
