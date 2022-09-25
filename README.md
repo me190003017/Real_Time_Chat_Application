@@ -1,5 +1,14 @@
+## Project Description
+1. We will be able to `create a new user` or `login`.
+2. We will see chat page where is latest conversation.
+3. We can click to see `message`.
+4. Search for any user to start any conversation
+5. Send `Text` & `Image`.
+6. All Operations are `Real Time`.
+7. When someone send you a message it will be latest message and this user will be on top in conversation list.
+
 ![Login_Page](src/img/ApplicationImages/BChat-login.png)
-![Register_Page](src/img/ApplicationImages/BChat-register.png)
+![Register_Page](src/img/ApplicationImages/BChat-Register.png)
 ![Home_Page](src/img/ApplicationImages/BChat-1.png)
 ![Home_Page](src/img/ApplicationImages/BChat-2.png)
 ![Home_Page](src/img/ApplicationImages/BChat-3.png)
